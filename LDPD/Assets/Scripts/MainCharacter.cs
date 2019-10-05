@@ -16,7 +16,7 @@ public class MainCharacter : MonoBehaviour
     public float speed;
     public float animSpeed = 1;
     private float animCounter = 0;
-    public float idleMaxTime = 5;
+    public float idleMaxTime = 8;
     private float idleCounter = 0;
     private bool canMove = true;
     public enum State { WalkingLeft, WalkingRight, Idle, Whistling };
@@ -29,10 +29,20 @@ public class MainCharacter : MonoBehaviour
 
     private CursorManager cursorManager;
     private ChatManager chatManager;
+    private Transform constraints;
+    private Transform leftBound;
+    private Transform rightBound;
 
     void Start() {
         cursorManager = GameObject.Find("GameLogic").GetComponent<CursorManager>();
         chatManager = GameObject.Find("GameLogic").GetComponent<ChatManager>();
+        constraints = GameObject.Find("Street").transform;
+        SetConstraints(constraints);
+    }
+
+    internal void SetConstraints(Transform root) {
+        leftBound = root.Find("LeftBound");
+        rightBound = root.Find("RightBound");
     }
 
     // Update is called once per frame
@@ -76,6 +86,9 @@ public class MainCharacter : MonoBehaviour
                 InteractiveObject actor = nextTarget;
                 nextTarget = null;
                 actor.Act();
+                if (actor.canInspect) {
+                    SetSprite(faceUp);
+                }
             }
         }
 
@@ -94,41 +107,56 @@ public class MainCharacter : MonoBehaviour
 
         if (Math.Abs(horizontalMovement) > 0) {
             transform.Translate(horizontalMovement, 0, 0);
+            bool isStopped = false;
+            if (transform.position.x < leftBound.position.x + leftBound.localScale.x) {
+                transform.position = new Vector3(leftBound.position.x + leftBound.localScale.x,
+                    transform.position.y, transform.position.z);
+                isStopped = true;
+            } else if (transform.position.x > rightBound.position.x) {
+                transform.position = new Vector3(rightBound.position.x, transform.position.y, transform.position.z);
+                isStopped = true;
+            }
+            if (isStopped) {
+                walkingToTarget = false;
+            }
         }
 
         if (chatManager.IsActive()) {
-            idleCounter = 0;
+            
+        } else {
+            // set correct sprite
+            if (state == State.Idle) {
+                SetSprite(idle);
+                idleCounter += Time.deltaTime;
+                if (idleCounter > idleMaxTime) {
+                    state = State.Whistling;
+                    SetSprite(whistle[0]);
+                    currentSpriteIndex = 0;
+                    animCounter = 0;
+                }
+            } else {
+                Sprite[] spriteArray;
+                if (state == State.WalkingLeft) {
+                    spriteArray = walkLeft;
+                } else if (state == State.WalkingRight) {
+                    spriteArray = walkRight;
+                } else {
+                    spriteArray = whistle;
+                }
+                animCounter += Time.deltaTime;
+                if (animCounter > animSpeed) {
+                    animCounter = 0;
+                    currentSpriteIndex = (currentSpriteIndex + 1) % 2;
+                    SetSprite(spriteArray[currentSpriteIndex]);
+                }
+            }
         }
 
-        // set correct sprite
-        if (state == State.Idle) {
-            SetSprite(idle);
-            idleCounter += Time.deltaTime;
-            if (idleCounter > idleMaxTime) {
-                state = State.Whistling;
-                SetSprite(whistle[0]);
-                currentSpriteIndex = 0;
-                animCounter = 0;
-            }
-        } else {
-            Sprite[] spriteArray;
-            if (state == State.WalkingLeft) {
-                spriteArray = walkLeft;
-            } else if (state == State.WalkingRight) {
-                spriteArray = walkRight;
-            } else {
-                spriteArray = whistle;
-            }
-            animCounter += Time.deltaTime;
-            if (animCounter > animSpeed) {
-                animCounter = 0;
-                currentSpriteIndex = (currentSpriteIndex + 1) % 2;
-                SetSprite(spriteArray[currentSpriteIndex]);
-            }
-        }
+        
     }
 
     internal void StartConversation(Conversation.ChatEntry[] conversation) {
+        chatManager = GameObject.Find("GameLogic").GetComponent<ChatManager>();
         chatManager.StartChat(conversation);
     }
 

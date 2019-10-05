@@ -26,6 +26,8 @@ public class CursorManager : MonoBehaviour {
             Cursor.SetCursor(enterCursor, Vector2.zero, CursorMode.ForceSoftware);
         } else if (interactiveObject.canInspect) {
             Cursor.SetCursor(viewCursor, Vector2.zero, CursorMode.ForceSoftware);
+        } else if (interactiveObject.canUse) {
+            Cursor.SetCursor(useCursor, Vector2.zero, CursorMode.ForceSoftware);
         }
     }
 

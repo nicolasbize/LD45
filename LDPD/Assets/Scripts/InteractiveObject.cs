@@ -7,6 +7,7 @@ public class InteractiveObject : MonoBehaviour
 
     public bool canEnter;
     public bool canInspect;
+    public bool canUse;
     public string doorName;
     public Conversation.ChatEntry[] conversation;
     
@@ -30,8 +31,10 @@ public class InteractiveObject : MonoBehaviour
             transform.root.position = new Vector3(0, -20, 0);
             GameObject door = GameObject.Find(doorName);
             door.transform.root.position = Vector3.zero;
-            Vector3 p = GameObject.Find("Hero").transform.position;
-            GameObject.Find("Hero").transform.position = new Vector3(door.transform.position.x, p.y, p.z);
+            GameObject hero = GameObject.Find("Hero");
+            Vector3 p = hero.transform.position;
+            hero.transform.position = new Vector3(door.transform.position.x, p.y, p.z);
+            hero.GetComponent<MainCharacter>().SetConstraints(door.transform.root);
             GameObject.Find("Main Camera").GetComponent<CameraMovement>().Reset();
         } else if (canInspect) {
             GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);

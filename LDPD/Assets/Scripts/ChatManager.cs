@@ -16,10 +16,7 @@ public class ChatManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chat = GameObject.Find("Chat");
-        bubble = GameObject.Find("ChatBubble");
-        text = GameObject.Find("ChatText");
-        chat.SetActive(false);
+        if (!isActive) chat.SetActive(false);
     }
     
     public bool IsActive() {
@@ -53,7 +50,14 @@ public class ChatManager : MonoBehaviour
     }
 
     public void RefreshChat() {
-        bubble.GetComponent<RectTransform>().transform.localPosition = new Vector3(83, 105, 0);
+        float xPos = Camera.main.transform.position.x - conversation[conversationIndex].speaker.transform.position.x;
+        Debug.Log(xPos);
+        if (xPos >= 0) {
+            xPos = -195 * xPos - 40;
+        } else {
+            xPos = 195 * xPos + 100;
+        }
+        bubble.GetComponent<RectTransform>().transform.localPosition = new Vector3(xPos, 165, 0);
         text.GetComponent<TextMeshProUGUI>().text = conversation[conversationIndex].text[chatIndex];
     }
 
