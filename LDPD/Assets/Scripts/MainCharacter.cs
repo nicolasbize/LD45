@@ -44,10 +44,16 @@ public class MainCharacter : MonoBehaviour
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            nextTarget = cursorManager.GetCurrentTarget();
-            if (nextTarget == null) {
-                nextMovePositionX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-                walkingToTarget = true;
+            if (chatManager.IsActive()) {
+                chatManager.Next();
+            } else {
+                nextTarget = cursorManager.GetCurrentTarget();
+                if (nextTarget == null) {
+                    nextMovePositionX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+                    walkingToTarget = true;
+                } else {
+                    walkingToTarget = false;
+                }
             }
         }
 
@@ -62,13 +68,14 @@ public class MainCharacter : MonoBehaviour
                 (nextMovePositionX < transform.position.x ? -1 : 1);
         } else if (nextTarget != null) {
             float distToTarget = Math.Abs(nextTarget.transform.position.x - transform.position.x);
-            if (distToTarget > 0.01) {
+            if (distToTarget > 0.005) {
                 horizontalMovement = speed * Time.deltaTime *
                     (nextTarget.transform.position.x < transform.position.x ? -1 : 1);
             } else {
                 // we reached the target, time to act upon it
-                nextTarget.Act();
+                InteractiveObject actor = nextTarget;
                 nextTarget = null;
+                actor.Act();
             }
         }
 
@@ -87,6 +94,10 @@ public class MainCharacter : MonoBehaviour
 
         if (Math.Abs(horizontalMovement) > 0) {
             transform.Translate(horizontalMovement, 0, 0);
+        }
+
+        if (chatManager.IsActive()) {
+            idleCounter = 0;
         }
 
         // set correct sprite

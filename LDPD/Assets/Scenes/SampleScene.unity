@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 385670514}
   - component: {fileID: 385670513}
   m_Layer: 5
-  m_Name: HeroText
+  m_Name: ChatText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,6 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterReference: {fileID: 2096571621}
+  padding: 0.5
 --- !u!1 &894538895
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chat: {fileID: 0}
+  bubble: {fileID: 0}
+  text: {fileID: 0}
   isActive: 0
 --- !u!1 &1121352537
 GameObject:
@@ -845,7 +848,8 @@ MonoBehaviour:
   conversation:
   - speaker: {fileID: 2096571621}
     text:
-    - That's the chief's car.
+    - That's the chief's car...
+    - It has that nice old people smell that reminds you to visit your grandmother.
 --- !u!1 &1380157803
 GameObject:
   m_ObjectHideFlags: 0

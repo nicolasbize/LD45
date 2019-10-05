@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
 
     public GameObject characterReference;
+    public float padding;
 
     // Start is called before the first frame update
     void Start()
@@ -19,14 +20,14 @@ public class CameraMovement : MonoBehaviour
         MainCharacter.State state = characterReference.GetComponent<MainCharacter>().GetState();
         float charX = characterReference.transform.position.x;
         float x = transform.position.x;
-        if (state == MainCharacter.State.WalkingLeft && charX < x - 1) {
+        if (state == MainCharacter.State.WalkingLeft && charX < x - padding) {
             transform.position = new Vector3(
-                characterReference.transform.position.x + 1,
+                characterReference.transform.position.x + padding,
                 transform.position.y,
                 transform.position.z);
-        } else if (state == MainCharacter.State.WalkingRight && charX > x + 1) {
+        } else if (state == MainCharacter.State.WalkingRight && charX > x + padding) {
             transform.position = new Vector3(
-                characterReference.transform.position.x - 1,
+                characterReference.transform.position.x - padding,
                 transform.position.y,
                 transform.position.z);
         }
