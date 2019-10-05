@@ -28,9 +28,11 @@ public class MainCharacter : MonoBehaviour
     private bool walkingToTarget = false;
 
     private CursorManager cursorManager;
+    private ChatManager chatManager;
 
     void Start() {
         cursorManager = GameObject.Find("GameLogic").GetComponent<CursorManager>();
+        chatManager = GameObject.Find("GameLogic").GetComponent<ChatManager>();
     }
 
     // Update is called once per frame
@@ -55,7 +57,7 @@ public class MainCharacter : MonoBehaviour
             nextTarget = null;
         }
 
-        if (walkingToTarget && Math.Abs(nextMovePositionX - transform.position.x) > 0.01) {
+        if (walkingToTarget && Math.Abs(nextMovePositionX - transform.position.x) > 0.005) {
             horizontalMovement = speed * Time.deltaTime *
                 (nextMovePositionX < transform.position.x ? -1 : 1);
         } else if (nextTarget != null) {
@@ -113,6 +115,10 @@ public class MainCharacter : MonoBehaviour
                 SetSprite(spriteArray[currentSpriteIndex]);
             }
         }
+    }
+
+    internal void StartConversation(Conversation.ChatEntry[] conversation) {
+        chatManager.StartChat(conversation);
     }
 
     private void SetSprite(Sprite sprite) {

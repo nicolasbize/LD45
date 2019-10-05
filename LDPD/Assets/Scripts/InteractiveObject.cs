@@ -6,7 +6,10 @@ public class InteractiveObject : MonoBehaviour
 {
 
     public bool canEnter;
+    public bool canInspect;
     public string doorName;
+    public Conversation.ChatEntry[] conversation;
+    
     private CursorManager cursorManager;
 
     void Start() {
@@ -15,7 +18,6 @@ public class InteractiveObject : MonoBehaviour
 
     void OnMouseEnter() {
         cursorManager.SetTarget(this);
-        
     }
 
     void OnMouseExit() {
@@ -31,6 +33,8 @@ public class InteractiveObject : MonoBehaviour
             Vector3 p = GameObject.Find("Hero").transform.position;
             GameObject.Find("Hero").transform.position = new Vector3(door.transform.position.x, p.y, p.z);
             GameObject.Find("Main Camera").GetComponent<CameraMovement>().Reset();
+        } else if (canInspect) {
+            GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);
         }
     }
 

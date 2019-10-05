@@ -24,6 +24,8 @@ public class CursorManager : MonoBehaviour {
         currentTarget = interactiveObject;
         if (interactiveObject.canEnter) {
             Cursor.SetCursor(enterCursor, Vector2.zero, CursorMode.ForceSoftware);
+        } else if (interactiveObject.canInspect) {
+            Cursor.SetCursor(viewCursor, Vector2.zero, CursorMode.ForceSoftware);
         }
     }
 
