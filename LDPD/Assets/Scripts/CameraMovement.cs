@@ -31,4 +31,11 @@ public class CameraMovement : MonoBehaviour
                 transform.position.z);
         }
     }
+
+    public void Reset() {
+        transform.position = new Vector3(
+            characterReference.transform.position.x,
+            transform.position.y,
+            transform.position.z);
+    }
 }

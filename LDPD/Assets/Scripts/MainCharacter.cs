@@ -23,10 +23,14 @@ public class MainCharacter : MonoBehaviour
     private State state = State.Idle;
     private int currentSpriteIndex;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private InteractiveObject nextTarget;
+    private float nextMovePositionX;
+    private bool walkingToTarget = false;
+
+    private CursorManager cursorManager;
+
+    void Start() {
+        cursorManager = GameObject.Find("GameLogic").GetComponent<CursorManager>();
     }
 
     // Update is called once per frame
@@ -34,9 +38,38 @@ public class MainCharacter : MonoBehaviour
     {
         float horizontalMovement = 0;
         if (canMove) {
-            horizontalMovement = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            transform.Translate(horizontalMovement, 0, 0);
+            horizontalMovement = Input.GetAxis("Horizontal") * speed * Time.deltaTime;    
         }
+
+        if (Input.GetMouseButtonDown(0)) {
+            nextTarget = cursorManager.GetCurrentTarget();
+            if (nextTarget == null) {
+                nextMovePositionX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+                walkingToTarget = true;
+            }
+        }
+
+        if (Math.Abs(horizontalMovement) > 0) {
+            // clear target and give control back as user is using keyboard
+            walkingToTarget = false;
+            nextTarget = null;
+        }
+
+        if (walkingToTarget && Math.Abs(nextMovePositionX - transform.position.x) > 0.01) {
+            horizontalMovement = speed * Time.deltaTime *
+                (nextMovePositionX < transform.position.x ? -1 : 1);
+        } else if (nextTarget != null) {
+            float distToTarget = Math.Abs(nextTarget.transform.position.x - transform.position.x);
+            if (distToTarget > 0.01) {
+                horizontalMovement = speed * Time.deltaTime *
+                    (nextTarget.transform.position.x < transform.position.x ? -1 : 1);
+            } else {
+                // we reached the target, time to act upon it
+                nextTarget.Act();
+                nextTarget = null;
+            }
+        }
+
         if (horizontalMovement == 0 && state != State.Whistling && state != State.Idle) {
             state = State.Idle;
             idleCounter = 0;
@@ -48,6 +81,10 @@ public class MainCharacter : MonoBehaviour
             state = State.WalkingRight;
             animCounter = 0;
             currentSpriteIndex = 0;
+        }
+
+        if (Math.Abs(horizontalMovement) > 0) {
+            transform.Translate(horizontalMovement, 0, 0);
         }
 
         // set correct sprite
