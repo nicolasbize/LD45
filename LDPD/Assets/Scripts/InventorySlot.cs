@@ -17,10 +17,10 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (HasItem()) {
             if (cursorManager.isUsingUIObject) {
                 if (isValidItemMatch(GetComponent<RawImage>().texture.name, cursorManager.itemName)) {
+                    string str = PerformTrade(GetComponent<RawImage>().texture.name, cursorManager.itemName);
                     GameObject.Find("Hero").GetComponent<MainCharacter>().Say(new string[] {
-                        "That should work!"
+                        str
                     });
-                    PerformTrade(GetComponent<RawImage>().texture.name, cursorManager.itemName);
                     cursorManager.isUsingUIObject = false;
                     cursorManager.ResetCursor();
                 } else {
@@ -55,7 +55,15 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         return ((item1 == "ball" && item2 == "slingshot") ||
             (item1 == "slingshot" && item2 == "ball") ||
             (item1 == "magnet" && item2 == "shoelace") ||
-            (item1 == "shoelace" && item2 == "magnet"));
+            (item1 == "shoelace" && item2 == "magnet") ||
+            (item1 == "envelope" && item2 == "vhs") ||
+            (item1 == "vhs" && item2 == "envelope") ||
+            (item1 == "envelope" && item2 == "letter") ||
+            (item1 == "letter" && item2 == "envelope") ||
+            (item1 == "partial-proof" && item2 == "letter") ||
+            (item1 == "letter" && item2 == "partial-proof") ||
+            (item1 == "partial-proof" && item2 == "vhs") ||
+            (item1 == "vhs" && item2 == "partial-proof"));
     }
 
     public void OnPointerExit(PointerEventData eventData) {
@@ -69,19 +77,41 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         return GetComponent<RawImage>().texture.name != "empty";
     }
 
-    private void PerformTrade(string item1, string item2) {
+    private string PerformTrade(string item1, string item2) {
         InventoryManager inventory = GameObject.Find("Inventory").GetComponent<InventoryManager>();
         inventory.RemoveByName(item1);
         inventory.RemoveByName(item2);
         if (((item1 == "ball" && item2 == "slingshot") ||
             (item1 == "slingshot" && item2 == "ball"))) {
             inventory.AddToInventory(GameObject.Find("armed-slingshot"));
+            return "Bring it on, Goliath!";
         }
         if (((item1 == "magnet" && item2 == "shoelace") ||
             (item1 == "shoelace" && item2 == "magnet"))) {
             inventory.AddToInventory(GameObject.Find("claw"));
+            return "Well that will make a cute little magnetized claw!";
         }
-
+        if (((item1 == "envelope" && item2 == "vhs") ||
+            (item1 == "vhs" && item2 == "envelope"))) {
+            inventory.AddToInventory(GameObject.Find("partial-proof"));
+            return "This is nice but they'll need some lead to catch them as well.";
+        }
+        if (((item1 == "envelope" && item2 == "letter") ||
+            (item1 == "letter" && item2 == "envelope"))) {
+            inventory.AddToInventory(GameObject.Find("partial-proof"));
+            return "This is nice but they'll need some more proof before following the lead.";
+        }
+        if (((item1 == "partial-proof" && item2 == "letter") ||
+            (item1 == "letter" && item2 == "partial-proof"))) {
+            inventory.AddToInventory(GameObject.Find("full-proof"));
+            return "Booya! Get ready to rot in hell guys!";
+        }
+        if (((item1 == "partial-proof" && item2 == "vhs") ||
+            (item1 == "vhs" && item2 == "partial-proof"))) {
+            inventory.AddToInventory(GameObject.Find("full-proof"));
+            return "Booya! Get ready to rot in hell guys!";
+        }
+        return "This will work!";
     }
 
 }

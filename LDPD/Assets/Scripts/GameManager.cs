@@ -38,8 +38,7 @@ public class GameManager : MonoBehaviour
 
         // DELETE THIS
         InventoryManager inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
-        inventoryManager.AddToInventory(GameObject.Find("armed-slingshot"));
-        inventoryManager.AddToInventory(GameObject.Find("claw"));
+        inventoryManager.AddToInventory(GameObject.Find("full-proof"));
         //GetComponent<ShreddedPapers>().Activate();
     }
 
