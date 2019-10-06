@@ -8015,7 +8015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a9ee916f13f4e4aa413e21511ab8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 3
+  currentScene: 0
   introMusic: {fileID: 8300000, guid: 5aa964fb2e3fe8d42981f30c82cf0b96, type: 3}
   mainMusic: {fileID: 8300000, guid: a03841a6e6b3e0a41b428c2dc9094ead, type: 3}
   canLeaveLDPD: 0
