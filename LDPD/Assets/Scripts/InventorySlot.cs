@@ -52,7 +52,9 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private bool isValidItemMatch(string item1, string item2) {
         return ((item1 == "ball" && item2 == "slingshot") ||
-            (item1 == "slingshot" && item2 == "ball"));
+            (item1 == "slingshot" && item2 == "ball") ||
+            (item1 == "magnet" && item2 == "shoelace") ||
+            (item1 == "shoelace" && item2 == "magnet"));
     }
 
     public void OnPointerExit(PointerEventData eventData) {
@@ -74,6 +76,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             (item1 == "slingshot" && item2 == "ball"))) {
             inventory.AddToInventory(GameObject.Find("armed-slingshot"));
         }
+        if (((item1 == "magnet" && item2 == "shoelace") ||
+            (item1 == "shoelace" && item2 == "magnet"))) {
+            inventory.AddToInventory(GameObject.Find("claw"));
+        }
+
     }
 
 }
