@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,16 +15,44 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerClick(PointerEventData eventData) {
         if (HasItem()) {
-            cursorManager.isUsingUIObject = true;
-            cursorManager.SetCustomCursor(GetComponent<RawImage>().texture.name);
+            if (cursorManager.isUsingUIObject) {
+                if (isValidItemMatch(GetComponent<RawImage>().texture.name, cursorManager.itemName)) {
+                    GameObject.Find("Hero").GetComponent<MainCharacter>().Say(new string[] {
+                        "That should work!"
+                    });
+                    PerformTrade(GetComponent<RawImage>().texture.name, cursorManager.itemName);
+                    cursorManager.isUsingUIObject = false;
+                    cursorManager.ResetCursor();
+                } else {
+                    GameObject.Find("Hero").GetComponent<MainCharacter>().Say(new string[] {
+                        "That's a stupid idea, how is this getting through my head?"
+                    });
+                }
+            } else {
+                cursorManager.isUsingUIObject = true;
+                cursorManager.SetCustomCursor(GetComponent<RawImage>().texture.name);
+            }
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
         cursorManager.isHoveringUI = true;
         if (HasItem()) {
-            cursorManager.SetInventoryCursor();
+            if (cursorManager.isUsingUIObject) {
+                if (isValidItemMatch(GetComponent<RawImage>().texture.name, cursorManager.itemName)) {
+                    cursorManager.SetValidCursorColor();
+                } else {
+                    cursorManager.SetInvalidCursorColor();
+                }
+            } else {
+                cursorManager.SetInventoryCursor();
+            }
         }
+    }
+
+    private bool isValidItemMatch(string item1, string item2) {
+        return ((item1 == "ball" && item2 == "slingshot") ||
+            (item1 == "slingshot" && item2 == "ball"));
     }
 
     public void OnPointerExit(PointerEventData eventData) {
@@ -35,6 +64,16 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private bool HasItem() {
         return GetComponent<RawImage>().texture.name != "empty";
+    }
+
+    private void PerformTrade(string item1, string item2) {
+        InventoryManager inventory = GameObject.Find("Inventory").GetComponent<InventoryManager>();
+        inventory.RemoveByName(item1);
+        inventory.RemoveByName(item2);
+        if (((item1 == "ball" && item2 == "slingshot") ||
+            (item1 == "slingshot" && item2 == "ball"))) {
+            inventory.AddToInventory(GameObject.Find("armed-slingshot"));
+        }
     }
 
 }

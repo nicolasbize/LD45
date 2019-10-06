@@ -102,6 +102,13 @@ public class InteractiveObject : MonoBehaviour
                     if (spriteAfterUse != null) {
                         GetComponent<SpriteRenderer>().sprite = spriteAfterUse;
                     }
+                    if (activedAfterUse != null) {
+                        activedAfterUse.SetActive(true);
+                        Debug.Log("activated");
+                    }
+                    if (destroyAfterUse) {
+                        Destroy(transform.gameObject);
+                    }
                     foreach (GameObject obj in takenObjects) {
                         GameObject.Find("Inventory").GetComponent<InventoryManager>().RemoveFromInventory(obj);
                     }
@@ -117,13 +124,17 @@ public class InteractiveObject : MonoBehaviour
                     GameObject.Find("Hero").GetComponent<MainCharacter>().Say(errUseMessages);
                 }
             } else {
-                GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);
-                if (activedAfterUse != null) {
-                    activedAfterUse.SetActive(true);
-                    Debug.Log("activated");
-                }
-                if (destroyAfterUse) {
-                    Destroy(transform.gameObject);
+                if (gameObject.name == "TVCode") {
+                    GetComponent<TVCode>().Activate();
+                } else {
+                    GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);
+                    if (activedAfterUse != null) {
+                        activedAfterUse.SetActive(true);
+                        Debug.Log("activated");
+                    }
+                    if (destroyAfterUse) {
+                        Destroy(transform.gameObject);
+                    }
                 }
             }
             cursorManager.ResetCursor();

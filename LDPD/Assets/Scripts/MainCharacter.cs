@@ -63,14 +63,7 @@ public class MainCharacter : MonoBehaviour
                     } else {
                         cursorManager.isUsingUIObject = false;
                         cursorManager.ResetCursor();
-                        StartConversation(new Conversation.ChatEntry[]{
-                            new Conversation.ChatEntry() {
-                                speaker = this.gameObject,
-                                text = new string[] {
-                                    "That's not gonna work.",
-                                }
-                            }
-                            });
+                        Say(new string[] {"That's not gonna work."});
                     }
                 } else {
                     if (nextTarget == null) {

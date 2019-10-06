@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private GameObject introText;
     private GameObject apartmentDark;
     private GameObject ldpd;
+    private GameObject inventory;
+
     private float timer = 0;
 
     public bool canLeaveLDPD = false;
@@ -25,12 +27,18 @@ public class GameManager : MonoBehaviour
         apartmentDark = GameObject.Find("ApartmentDark");
         titleScreen = GameObject.Find("Title");
         ldpd = GameObject.Find("LDPD");
+        inventory = GameObject.Find("Inventory");
         introText.SetActive(false);
         apartmentDark.SetActive(false);
+        inventory.SetActive(false);
         ldpd.SetActive(false);
         hero = GameObject.Find("Hero");
         cursorManager = GameObject.Find("GameLogic").GetComponent<CursorManager>();
         LoadScene(currentScene);
+
+        // DELETE THIS
+        InventoryManager inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
+        inventoryManager.AddToInventory(GameObject.Find("armed-slingshot"));
     }
 
     void Update() {
@@ -85,6 +93,7 @@ public class GameManager : MonoBehaviour
             apartmentDark.SetActive(false);
             hero.SetActive(true);
             ldpd.SetActive(true);
+            inventory.SetActive(true);
             ldpd.transform.position = new Vector3(0, 0.3f, 0);
             Camera.main.transform.position = new Vector3(5, 0, -10);
             hero.transform.position = new Vector3(5, 0, -2);

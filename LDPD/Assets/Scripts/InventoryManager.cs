@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,11 +7,16 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     private List<GameObject> inventory = new List<GameObject>();
+    public Texture2D emptyTexture;
 
     public void RemoveFromInventory(GameObject go) {
+        RemoveByName(go.name);
+    }
+
+    internal void RemoveByName(string name) {
         GameObject toRemove = null;
         foreach (GameObject obj in inventory) {
-            if (obj.name == go.name) {
+            if (obj.name == name) {
                 toRemove = obj;
             }
         }
@@ -33,5 +39,9 @@ public class InventoryManager : MonoBehaviour
         for (var i=0; i<inventory.Count; i++) {
             images[i].texture = inventory[i].GetComponent<SpriteRenderer>().sprite.texture;
         }
+        for (var i=inventory.Count; i<images.Length; i++) {
+            images[i].texture = emptyTexture;
+        }
     }
+
 }
