@@ -8298,7 +8298,7 @@ MonoBehaviour:
   activedAfterUse: {fileID: 0}
   validItemName: claw
   errUseMessages:
-  - Looks like a license plate is stuck in there!
+  - Looks like a license plate.. I need a claw or something.
   successUseMessages:
   - Can't quite get it out... It reads "76243"
   doorName: 
@@ -11283,7 +11283,7 @@ MonoBehaviour:
   conversation:
   - speaker: {fileID: 2096571621}
     text:
-    - Looks like a drawing contest from a kindergarden class.
+    - Is that a drawing contest from a kindergarden class?
     - Prices go from $20K to $10M... Keep dreaming lady!
 --- !u!1 &1366942868
 GameObject:

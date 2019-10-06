@@ -141,6 +141,8 @@ public class GameManager : MonoBehaviour
             Camera.main.transform.position = new Vector3(0, 0, -10);
             finalScreen.SetActive(true);
             black.FadeOut();
+            Camera.main.GetComponent<AudioSource>().clip = introMusic;
+            Camera.main.GetComponent<AudioSource>().Play();
         }
 
     }
