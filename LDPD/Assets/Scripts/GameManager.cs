@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         InventoryManager inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
         inventoryManager.AddToInventory(GameObject.Find("armed-slingshot"));
         inventoryManager.AddToInventory(GameObject.Find("claw"));
+        //GetComponent<ShreddedPapers>().Activate();
     }
 
     void Update() {

@@ -14,14 +14,16 @@ public class MainCharacter : MonoBehaviour
     public Sprite reachUp;
     public Sprite crouch;
     public float speed;
+    private float threshold = 0.01f;
     public float animSpeed = 1;
     private float animCounter = 0;
-    public float idleMaxTime = 8;
+    public float idleMaxTime = 10;
     private float idleCounter = 0;
     private bool canMove = true;
     public enum State { WalkingLeft, WalkingRight, Idle, Whistling };
     private State state = State.Idle;
     private int currentSpriteIndex;
+    
 
     private InteractiveObject nextTarget;
     private float nextMovePositionX;
@@ -82,13 +84,13 @@ public class MainCharacter : MonoBehaviour
             nextTarget = null;
         }
 
-        if (walkingToTarget && Math.Abs(nextMovePositionX - transform.position.x) > 0.005) {
+        if (walkingToTarget && Math.Abs(nextMovePositionX - transform.position.x) > threshold) {
             horizontalMovement = speed * Time.deltaTime *
                 (nextMovePositionX < transform.position.x ? -1 : 1);
         } else if (nextTarget != null) {
             InteractiveObject actor = nextTarget;
             float distToTarget = Math.Abs(nextTarget.transform.position.x - transform.position.x);
-            if (((actor.canInspect || actor.canUse) && distToTarget > 0.005) || 
+            if (((actor.canInspect || actor.canUse || actor.canEnter) && distToTarget > threshold) || 
                 (actor.canTalk && distToTarget > 1.5)) {
                 horizontalMovement = speed * Time.deltaTime *
                     (nextTarget.transform.position.x < transform.position.x ? -1 : 1);

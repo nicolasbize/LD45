@@ -26,5 +26,10 @@ public class TVCode : MonoBehaviour
         GameObject.Find("GameLogic").GetComponent<CursorManager>().ResetCursor();
     }
 
+    public void Success() {
+        Deactivate();
+        Debug.Log("Give VHS in inventory and watch it!");
+    }
+
 
 }

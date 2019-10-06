@@ -30,6 +30,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 }
             } else {
                 cursorManager.isUsingUIObject = true;
+                Debug.Log("Using cursor " + GetComponent<RawImage>().texture.name);
                 cursorManager.SetCustomCursor(GetComponent<RawImage>().texture.name);
             }
         }

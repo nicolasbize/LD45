@@ -7,6 +7,5 @@ public class ExitCodeButton : MonoBehaviour, IPointerClickHandler {
 
     public void OnPointerClick(PointerEventData eventData) {
         GameObject.Find("TVCode").GetComponent<TVCode>().Deactivate();
-        Debug.Log("Quitting code");
     }
 }

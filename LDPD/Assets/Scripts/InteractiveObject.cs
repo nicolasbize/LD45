@@ -32,6 +32,7 @@ public class InteractiveObject : MonoBehaviour
         cursorManager.SetTarget(this);
         if (cursorManager.isUsingUIObject) {
             if (requiresItemForUse && validItemName == cursorManager.itemName) {
+                Debug.Log("Correct items aligned: " + validItemName + " " + cursorManager.itemName);
                 cursorManager.SetValidCursorColor();
             } else {
                 cursorManager.SetInvalidCursorColor();
@@ -59,6 +60,9 @@ public class InteractiveObject : MonoBehaviour
             if (destroyAfterUse) {
                 Destroy(transform.gameObject);
             }
+            if (gameObject.name == "ShrededPaper") {
+                GameObject.Find("GameLogic").GetComponent<ShreddedPapers>().Activate();
+            }
         } else if (canEnter) {
             //if (GameObject.Find("GameLogic").GetComponent<GameManager>().canLeaveLDPD == false) {
             //    GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(
@@ -81,7 +85,7 @@ public class InteractiveObject : MonoBehaviour
                 hero.GetComponent<MainCharacter>().SetConstraints(door.transform.root);
                 GameObject.Find("Main Camera").GetComponent<CameraMovement>().Reset();
             //}
-        } else if (canInspect) {
+        } else if (canInspect && !cursorManager.isUsingUIObject) {
             GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);
         } else if (canTalk && !cursorManager.isUsingUIObject) {
             GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);
@@ -104,6 +108,8 @@ public class InteractiveObject : MonoBehaviour
                     }
                     if (activedAfterUse != null) {
                         activedAfterUse.SetActive(true);
+                        canUse = false;
+                        canInspect = true;
                         Debug.Log("activated");
                     }
                     if (destroyAfterUse) {
@@ -117,8 +123,6 @@ public class InteractiveObject : MonoBehaviour
                     }
                     cursorManager.isUsingUIObject = false;
                     cursorManager.isValidItemUsage = false;
-                    canUse = false;
-                    canInspect = true;
                     cursorManager.ResetCursor();
                 } else {
                     GameObject.Find("Hero").GetComponent<MainCharacter>().Say(errUseMessages);

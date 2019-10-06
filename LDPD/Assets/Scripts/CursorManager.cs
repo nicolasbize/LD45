@@ -10,6 +10,7 @@ public class CursorManager : MonoBehaviour {
     public Texture2D chatCursor;
     public Texture2D useCursor;
     public Texture2D viewCursor;
+    public Texture2D arrowCursor;
     private InteractiveObject currentTarget;
     public bool isHoveringUI;
     public bool isUsingUIObject;
@@ -68,6 +69,10 @@ public class CursorManager : MonoBehaviour {
 
     public void ResetCursor() {
         Cursor.SetCursor(moveCursor, Vector2.zero, CursorMode.ForceSoftware);
+        currentTarget = null;
+    }
+    public void SetArrowCursor() {
+        Cursor.SetCursor(arrowCursor, Vector2.zero, CursorMode.ForceSoftware);
         currentTarget = null;
     }
 }

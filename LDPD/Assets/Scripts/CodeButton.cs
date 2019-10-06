@@ -7,12 +7,15 @@ using UnityEngine.EventSystems;
 public class CodeButton : MonoBehaviour {
 
     private int value = 0;
+    private bool canMove = true;
 
     public void Increase(int increaseValue) {
-        value += increaseValue;
-        if (value > 9) value = 0;
-        if (value < 0) value = 9;
-        RefreshText();
+        if (canMove) {
+            value += increaseValue;
+            if (value > 9) value = 0;
+            if (value < 0) value = 9;
+            RefreshText();
+        }
     }
 
     private void RefreshText() {
@@ -22,6 +25,11 @@ public class CodeButton : MonoBehaviour {
 
     public int GetValue() {
         return value;
+    }
+
+    public void SetGreen() {
+        canMove = false;
+        this.transform.Find("Text").GetComponent<TextMeshProUGUI>().color = new Color(0, 0.9f, 0);
     }
 
 }
