@@ -27,8 +27,8 @@ public class ShreddedPapers : MonoBehaviour
         InventoryManager inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
         inventoryManager.AddToInventory(GameObject.Find("letter"));
         GameObject.Find("Hero").GetComponent<MainCharacter>().Say(new string[] {
-                    "It looks like there's an opportunity to catch them.",
-                    "I need to send all of this info to the FBI."
+                    "Looks like the Chief is involved in something nasty.",
+                    "I'll need some more proof before acting."
                 });
     }
 }

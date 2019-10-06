@@ -36,6 +36,11 @@ public class ChatManager : MonoBehaviour
             conversationIndex = 0;
             isActive = false;
             chat.SetActive(false);
+            // check if we reached the end of the game
+            // lame lol
+            if (conversation[0].text[0] == "There we go...") {
+                GameObject.Find("GameLogic").GetComponent<GameManager>().LoadScene(GameManager.Scene.Ending);
+            }
         }
     }
 

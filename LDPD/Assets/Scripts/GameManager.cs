@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public enum Scene { TitleScreen, IntroText, IntroMurder, IntroPoliceStation }
+    public enum Scene { TitleScreen, IntroText, IntroMurder, IntroPoliceStation, Ending, FinalEnd }
     public Scene currentScene;
     private CursorManager cursorManager;
     private GameObject hero;
     private Transition black;
     private GameObject titleScreen;
     private GameObject introText;
+    private GameObject finalScreen;
     private GameObject apartmentDark;
     private GameObject ldpd;
+    private GameObject street;
     private GameObject inventory;
 
     private float timer = 0;
@@ -26,19 +28,23 @@ public class GameManager : MonoBehaviour
         introText = GameObject.Find("IntroText");
         apartmentDark = GameObject.Find("ApartmentDark");
         titleScreen = GameObject.Find("Title");
+        finalScreen = GameObject.Find("FinalScreen");
         ldpd = GameObject.Find("LDPD");
+        street = GameObject.Find("Street");
         inventory = GameObject.Find("Inventory");
         introText.SetActive(false);
         apartmentDark.SetActive(false);
         inventory.SetActive(false);
+        finalScreen.SetActive(false);
         ldpd.SetActive(false);
+        street.SetActive(false);
         hero = GameObject.Find("Hero");
         cursorManager = GameObject.Find("GameLogic").GetComponent<CursorManager>();
         LoadScene(currentScene);
 
         // DELETE THIS
-        InventoryManager inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
-        inventoryManager.AddToInventory(GameObject.Find("full-proof"));
+        //InventoryManager inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
+        //inventoryManager.AddToInventory(GameObject.Find("full-proof"));
         //GetComponent<ShreddedPapers>().Activate();
     }
 
@@ -73,10 +79,15 @@ public class GameManager : MonoBehaviour
                     LoadScene(Scene.IntroPoliceStation);
                 });
             }
+        } else if (currentScene == Scene.Ending) {
+            timer += Time.deltaTime;
+            if (timer > 3) {
+                LoadScene(Scene.FinalEnd);
+            }
         }
     }
 
-    private void LoadScene(Scene sceneName) {
+    public void LoadScene(Scene sceneName) {
         currentScene = sceneName;
         if (currentScene == Scene.TitleScreen) {
             GameObject.Find("Title").transform.position = Vector3.zero;
@@ -94,6 +105,7 @@ public class GameManager : MonoBehaviour
             apartmentDark.SetActive(false);
             hero.SetActive(true);
             ldpd.SetActive(true);
+            street.SetActive(true);
             inventory.SetActive(true);
             ldpd.transform.position = new Vector3(0, 0.3f, 0);
             Camera.main.transform.position = new Vector3(5, 0, -10);
@@ -109,6 +121,17 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 });
+            black.FadeOut();
+        } else if (currentScene == Scene.Ending) {
+            timer = 0;
+            black.FadeIn(() => {
+                hero.SetActive(false);
+                street.SetActive(false);
+                inventory.SetActive(false);
+            });
+        } else if (currentScene == Scene.FinalEnd) {
+            Camera.main.transform.position = new Vector3(0, 0, -10);
+            finalScreen.SetActive(true);
             black.FadeOut();
         }
 

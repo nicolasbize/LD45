@@ -32,7 +32,6 @@ public class InteractiveObject : MonoBehaviour
         cursorManager.SetTarget(this);
         if (cursorManager.isUsingUIObject) {
             if (requiresItemForUse && validItemName == cursorManager.itemName) {
-                Debug.Log("Correct items aligned: " + validItemName + " " + cursorManager.itemName);
                 cursorManager.SetValidCursorColor();
             } else {
                 cursorManager.SetInvalidCursorColor();
@@ -64,17 +63,17 @@ public class InteractiveObject : MonoBehaviour
                 GameObject.Find("GameLogic").GetComponent<ShreddedPapers>().Activate();
             }
         } else if (canEnter) {
-            //if (GameObject.Find("GameLogic").GetComponent<GameManager>().canLeaveLDPD == false) {
-            //    GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(
-            //        new Conversation.ChatEntry[]{
-            //        new Conversation.ChatEntry() {
-            //            speaker = GameObject.Find("Hero"),
-            //            text = new string[] {
-            //                "I need to go talk with the Chief before leaving.",
-            //            }
-            //        }});
+            if (GameObject.Find("GameLogic").GetComponent<GameManager>().canLeaveLDPD == false) {
+                GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(
+                    new Conversation.ChatEntry[]{
+                    new Conversation.ChatEntry() {
+                        speaker = GameObject.Find("Hero"),
+                        text = new string[] {
+                            "I need to go talk with the Chief before leaving.",
+                        }
+                    }});
 
-            //} else {
+            } else {
                 // we need to switch backgrounds
                 transform.root.position = new Vector3(0, -20, 0);
                 GameObject door = GameObject.Find(doorName);
@@ -84,7 +83,7 @@ public class InteractiveObject : MonoBehaviour
                 hero.transform.position = new Vector3(door.transform.position.x, p.y, p.z);
                 hero.GetComponent<MainCharacter>().SetConstraints(door.transform.root);
                 GameObject.Find("Main Camera").GetComponent<CameraMovement>().Reset();
-            //}
+            }
         } else if (canInspect && !cursorManager.isUsingUIObject) {
             GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);
         } else if (canTalk && !cursorManager.isUsingUIObject) {

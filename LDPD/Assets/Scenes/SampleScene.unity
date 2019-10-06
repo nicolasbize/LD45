@@ -1923,7 +1923,7 @@ Transform:
   - {fileID: 979128902}
   - {fileID: 1473656660}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &228938234
 GameObject:
@@ -2821,7 +2821,8 @@ MonoBehaviour:
   - speaker: {fileID: 2096571621}
     text:
     - Looks like a letter from Jerry...
-    - '"Sam you have to destroy the evidence and flee, the cops are on to us!"'
+    - '"Sam you have to destroy the evidence and flee!"'
+    - '"I think the cops are onto us!"'
     - '"I''m leaving town tomorrow. Don''t trust anyone!"'
 --- !u!212 &327065682
 SpriteRenderer:
@@ -3641,7 +3642,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.15, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4832,7 +4833,7 @@ Transform:
   m_LocalScale: {x: 15.954375, y: 2.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &564959618
 MonoBehaviour:
@@ -6020,7 +6021,7 @@ Transform:
   - {fileID: 669859720}
   - {fileID: 1344570432}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &650138297
 GameObject:
@@ -7440,7 +7441,7 @@ Transform:
   m_Children:
   - {fileID: 2047003339}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &829904593
 GameObject:
@@ -7874,7 +7875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a9ee916f13f4e4aa413e21511ab8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 3
+  currentScene: 0
   canLeaveLDPD: 0
 --- !u!114 &894538900
 MonoBehaviour:
@@ -9441,7 +9442,7 @@ Transform:
   m_Children:
   - {fileID: 780514850}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1149339284
 GameObject:
@@ -9500,6 +9501,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1151213235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151213237}
+  - component: {fileID: 1151213236}
+  m_Layer: 0
+  m_Name: FinalScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1151213236
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151213235}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 42dcc8dab597f2742a4933ae4c895ab1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 4.5, y: 2.875}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1151213237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151213235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1152480920
 GameObject:
   m_ObjectHideFlags: 0
@@ -9870,7 +9951,7 @@ Transform:
   m_Children:
   - {fileID: 1731170418}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1198018474
 MonoBehaviour:
@@ -10870,7 +10951,8 @@ MonoBehaviour:
   conversation:
   - speaker: {fileID: 2096571621}
     text:
-    - A bunch of astronomy magazines and some coffee beans. Great combination.
+    - Astronomy magazines and refried beans.
+    - The perfect combo for an explosive diarrhea!
 --- !u!1 &1344570431
 GameObject:
   m_ObjectHideFlags: 0
@@ -12287,9 +12369,11 @@ MonoBehaviour:
   - Aaah... Let me see your future...
   - Oh... I can see that you have a wonderful life...
   - '... Hmmm.... '
-  - Yes, vely beautiful life...
+  - Yes, vely beautiful life but holible death...
   - '... hmmm...'
-  - Youl welcome!
+  - Wow that was exhausting!
+  - I don't usually give so many details!
+  - Thanks for coming, enjoy your own personal crystal ball!
   doorName: 
   spriteAfterUse: {fileID: 0}
   givenObjects:
@@ -15460,9 +15544,9 @@ MonoBehaviour:
   faceUp: {fileID: 21300000, guid: cabe0e9617024d24f956a80558d1ee7d, type: 3}
   reachUp: {fileID: 21300000, guid: 053cc473e03892d43b8324b1ac6a42f1, type: 3}
   crouch: {fileID: 21300000, guid: 5de7ab2caca1bf148ae7b90884aea5a8, type: 3}
-  speed: 5
+  speed: 2
   animSpeed: 0.3
-  idleMaxTime: 4
+  idleMaxTime: 10
 --- !u!1 &2097601123
 GameObject:
   m_ObjectHideFlags: 0
@@ -15616,7 +15700,7 @@ MonoBehaviour:
   - speaker: {fileID: 2096571621}
     text:
     - One man's trash is another's treasure...
-    - A box of matches from Drinkup... I can't remember Jerry smoking.
+    - A box of matches. Don't see any ashtray though!
 --- !u!61 &2102473487
 BoxCollider2D:
   m_ObjectHideFlags: 0
