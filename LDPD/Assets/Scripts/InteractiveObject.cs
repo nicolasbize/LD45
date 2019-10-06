@@ -12,6 +12,7 @@ public class InteractiveObject : MonoBehaviour
     public bool canUse;
     public bool requiresItemForUse;
     public bool destroyAfterUse;
+    public bool switchToInspectAfterUse;
     public GameObject activedAfterUse;
     public string validItemName;
     public string[] errUseMessages;
@@ -107,6 +108,10 @@ public class InteractiveObject : MonoBehaviour
                     }
                     if (activedAfterUse != null) {
                         activedAfterUse.SetActive(true);
+                        canUse = false;
+                        canInspect = true;
+                    }
+                    if (switchToInspectAfterUse) {
                         canUse = false;
                         canInspect = true;
                     }

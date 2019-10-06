@@ -156,12 +156,12 @@ public class MainCharacter : MonoBehaviour
                 } else {
                     spriteArray = whistle;
                 }
-                animCounter += Time.deltaTime;
-                if (animCounter > animSpeed) {
+                if (animCounter > animSpeed || animCounter == 0) {
                     animCounter = 0;
                     currentSpriteIndex = (currentSpriteIndex + 1) % 2;
                     SetSprite(spriteArray[currentSpriteIndex]);
                 }
+                animCounter += Time.deltaTime;
             }
         }
 

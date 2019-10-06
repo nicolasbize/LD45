@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public enum Scene { TitleScreen, IntroText, IntroMurder, IntroPoliceStation, Ending, FinalEnd }
     public Scene currentScene;
+    public AudioClip introMusic;
+    public AudioClip mainMusic;
     private CursorManager cursorManager;
     private GameObject hero;
     private Transition black;
@@ -91,17 +93,22 @@ public class GameManager : MonoBehaviour
         currentScene = sceneName;
         if (currentScene == Scene.TitleScreen) {
             GameObject.Find("Title").transform.position = Vector3.zero;
+            Camera.main.GetComponent<AudioSource>().clip = introMusic;
+            Camera.main.GetComponent<AudioSource>().Play();
             hero.SetActive(false);
         } else if (currentScene == Scene.IntroText) {
             titleScreen.SetActive(false);
             introText.SetActive(true);
             black.FadeOut();
         } else if (currentScene == Scene.IntroMurder) {
+            Camera.main.GetComponent<AudioSource>().Stop();
             introText.SetActive(false);
             apartmentDark.SetActive(true);
             Camera.main.transform.position = new Vector3(-4, 0, -10);
             black.FadeOut();
         } else if (currentScene == Scene.IntroPoliceStation) {
+            Camera.main.GetComponent<AudioSource>().clip = mainMusic;
+            Camera.main.GetComponent<AudioSource>().Play();
             apartmentDark.SetActive(false);
             hero.SetActive(true);
             ldpd.SetActive(true);
