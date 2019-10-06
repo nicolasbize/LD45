@@ -56,6 +56,9 @@ public class InteractiveObject : MonoBehaviour
             }
             cursorManager.ResetCursor();
             canTake = false;
+            if (destroyAfterUse) {
+                Destroy(transform.gameObject);
+            }
         } else if (canEnter) {
             //if (GameObject.Find("GameLogic").GetComponent<GameManager>().canLeaveLDPD == false) {
             //    GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(
@@ -80,7 +83,7 @@ public class InteractiveObject : MonoBehaviour
             //}
         } else if (canInspect) {
             GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);
-        } else if (canTalk) {
+        } else if (canTalk && !cursorManager.isUsingUIObject) {
             GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);
             if (this.name == "Chief") {
                 GameObject.Find("GameLogic").GetComponent<GameManager>().canLeaveLDPD = true;
@@ -117,6 +120,7 @@ public class InteractiveObject : MonoBehaviour
                 GameObject.Find("Hero").GetComponent<MainCharacter>().StartConversation(conversation);
                 if (activedAfterUse != null) {
                     activedAfterUse.SetActive(true);
+                    Debug.Log("activated");
                 }
                 if (destroyAfterUse) {
                     Destroy(transform.gameObject);
