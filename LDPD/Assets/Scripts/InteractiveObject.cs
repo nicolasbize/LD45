@@ -109,7 +109,6 @@ public class InteractiveObject : MonoBehaviour
                         activedAfterUse.SetActive(true);
                         canUse = false;
                         canInspect = true;
-                        Debug.Log("activated");
                     }
                     if (destroyAfterUse) {
                         Destroy(transform.gameObject);

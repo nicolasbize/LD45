@@ -28,7 +28,6 @@ public class TVCode : MonoBehaviour
 
     public void Success() {
         Deactivate();
-        Debug.Log("Give VHS in inventory and watch it!");
     }
 
 
