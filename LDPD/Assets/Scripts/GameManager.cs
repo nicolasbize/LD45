@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private GameObject ldpd;
     private float timer = 0;
 
+    public bool canLeaveLDPD = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,14 +88,14 @@ public class GameManager : MonoBehaviour
             ldpd.transform.position = new Vector3(0, 0.3f, 0);
             Camera.main.transform.position = new Vector3(5, 0, -10);
             hero.transform.position = new Vector3(5, 0, -2);
-            hero.GetComponent<MainCharacter>().SetConstraints(ldpd.transform);
+            hero.GetComponent<MainCharacter>().SetConstraints(ldpd.transform.root);
             Conversation conversation = new Conversation();
             hero.GetComponent<MainCharacter>().StartConversation(new Conversation.ChatEntry[]{
                 new Conversation.ChatEntry() {
                     speaker = hero,
                     text = new string[] {
-                        "Chief Toadler just called me in his office.",
-                        "Better be about this raise I've been waiting for!"
+                        "Chief Toadler just called me in her office.",
+                        "Must be about the raise she keeps telling me about!"
                     }
                 }
                 });

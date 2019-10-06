@@ -36,8 +36,7 @@ public class MainCharacter : MonoBehaviour
     void Start() {
         cursorManager = GameObject.Find("GameLogic").GetComponent<CursorManager>();
         chatManager = GameObject.Find("GameLogic").GetComponent<ChatManager>();
-        constraints = GameObject.Find("Street").transform;
-        SetConstraints(constraints);
+
     }
 
     internal void SetConstraints(Transform root) {
@@ -49,20 +48,39 @@ public class MainCharacter : MonoBehaviour
     void Update()
     {
         float horizontalMovement = 0;
-        if (canMove) {
+        if (canMove && !cursorManager.isUsingUIObject) {
             horizontalMovement = Input.GetAxis("Horizontal") * speed * Time.deltaTime;    
         }
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !cursorManager.isHoveringUI) {
             if (chatManager.IsActive()) {
                 chatManager.Next();
             } else {
                 nextTarget = cursorManager.GetCurrentTarget();
-                if (nextTarget == null) {
-                    nextMovePositionX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-                    walkingToTarget = true;
+                Debug.Log(nextTarget);
+                if (cursorManager.isUsingUIObject) {
+                    if (cursorManager.isValidItemUsage) {
+                        walkingToTarget = false;
+                        Debug.Log("Will use item on " + nextTarget);
+                    } else {
+                        cursorManager.isUsingUIObject = false;
+                        cursorManager.ResetCursor();
+                        StartConversation(new Conversation.ChatEntry[]{
+                            new Conversation.ChatEntry() {
+                                speaker = this.gameObject,
+                                text = new string[] {
+                                    "That's not gonna work.",
+                                }
+                            }
+                            });
+                    }
                 } else {
-                    walkingToTarget = false;
+                    if (nextTarget == null) {
+                        nextMovePositionX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+                        walkingToTarget = true;
+                    } else {
+                        walkingToTarget = false;
+                    }
                 }
             }
         }
@@ -77,16 +95,17 @@ public class MainCharacter : MonoBehaviour
             horizontalMovement = speed * Time.deltaTime *
                 (nextMovePositionX < transform.position.x ? -1 : 1);
         } else if (nextTarget != null) {
+            InteractiveObject actor = nextTarget;
             float distToTarget = Math.Abs(nextTarget.transform.position.x - transform.position.x);
-            if (distToTarget > 0.005) {
+            if (((actor.canInspect || actor.canUse) && distToTarget > 0.005) || 
+                (actor.canTalk && distToTarget > 1.5)) {
                 horizontalMovement = speed * Time.deltaTime *
                     (nextTarget.transform.position.x < transform.position.x ? -1 : 1);
             } else {
                 // we reached the target, time to act upon it
-                InteractiveObject actor = nextTarget;
                 nextTarget = null;
                 actor.Act();
-                if (actor.canInspect) {
+                if (actor.canInspect || actor.canUse) {
                     SetSprite(faceUp);
                 }
             }
@@ -105,14 +124,15 @@ public class MainCharacter : MonoBehaviour
             currentSpriteIndex = 0;
         }
 
-        if (Math.Abs(horizontalMovement) > 0) {
+        if (Math.Abs(horizontalMovement) > 0 && !chatManager.IsActive()) {
             transform.Translate(horizontalMovement, 0, 0);
             bool isStopped = false;
-            if (transform.position.x < leftBound.position.x + leftBound.localScale.x) {
+            if (horizontalMovement < 0 && transform.position.x < leftBound.position.x + leftBound.localScale.x) {
                 transform.position = new Vector3(leftBound.position.x + leftBound.localScale.x,
                     transform.position.y, transform.position.z);
                 isStopped = true;
-            } else if (transform.position.x > rightBound.position.x) {
+            }
+            if (horizontalMovement > 0 && transform.localPosition.x > rightBound.localPosition.x) {
                 transform.position = new Vector3(rightBound.position.x, transform.position.y, transform.position.z);
                 isStopped = true;
             }
@@ -153,6 +173,15 @@ public class MainCharacter : MonoBehaviour
         }
 
         
+    }
+
+    internal void Say(string[] messages) {
+        StartConversation(
+            new Conversation.ChatEntry[]{
+                new Conversation.ChatEntry() {
+                    speaker = gameObject,
+                    text = messages
+                }});
     }
 
     internal void StartConversation(Conversation.ChatEntry[] conversation) {

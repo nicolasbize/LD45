@@ -26,7 +26,6 @@ public class ChatManager : MonoBehaviour
     public void Next() {
         if (chatIndex < conversation[conversationIndex].text.Length - 1) {
             chatIndex++;
-            Debug.Log("Next Chat");
             RefreshChat();
         } else if (conversationIndex < conversation.Length - 1) {
             conversationIndex++;
@@ -50,13 +49,18 @@ public class ChatManager : MonoBehaviour
     }
 
     public void RefreshChat() {
-        float xPos = Camera.main.transform.position.x - conversation[conversationIndex].speaker.transform.position.x;
-        Debug.Log(xPos);
-        if (xPos >= 0) {
-            xPos = -195 * xPos - 40;
+        float diff = Camera.main.transform.position.x - conversation[conversationIndex].speaker.transform.position.x;
+        float pxDiff = Mathf.Abs(diff) * 360 / 1.8f;
+        float xPos = 0f;
+        if (diff > 0) {
+            xPos = pxDiff - 240;
+        } else if (diff < 0) {
+            xPos = pxDiff - 80;
         } else {
-            xPos = 195 * xPos + 100;
+            xPos = pxDiff - 60;
         }
+        if (xPos > 240) xPos = 240;
+        if (xPos < -240) xPos = -240;
         bubble.GetComponent<RectTransform>().transform.localPosition = new Vector3(xPos, 165, 0);
         text.GetComponent<TextMeshProUGUI>().text = conversation[conversationIndex].text[chatIndex];
     }
