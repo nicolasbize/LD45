@@ -57,11 +57,9 @@ public class MainCharacter : MonoBehaviour
                 chatManager.Next();
             } else {
                 nextTarget = cursorManager.GetCurrentTarget();
-                Debug.Log(nextTarget);
                 if (cursorManager.isUsingUIObject) {
                     if (cursorManager.isValidItemUsage) {
                         walkingToTarget = false;
-                        Debug.Log("Will use item on " + nextTarget);
                     } else {
                         cursorManager.isUsingUIObject = false;
                         cursorManager.ResetCursor();
