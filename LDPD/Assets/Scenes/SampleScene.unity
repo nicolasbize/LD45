@@ -150,7 +150,7 @@ Transform:
   m_LocalScale: {x: 0.40208337, y: 0.19785313, z: 0.29798}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &48224162
 MonoBehaviour:
@@ -299,7 +299,7 @@ Transform:
   m_LocalScale: {x: 0.55283785, y: 0.96469635, z: 0.118104376}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &79832506
 MonoBehaviour:
@@ -1191,10 +1191,10 @@ MonoBehaviour:
   conversation:
   - speaker: {fileID: 2096571621}
     text:
-    - Paul, did you hear about Larry?
+    - Paul, did you hear about Jerry?
   - speaker: {fileID: 167525334}
     text:
-    - (hic) oh good old Larry, I hear he shot himself...
+    - (hic) oh good old Jerry, I hear he shot himself...
   - speaker: {fileID: 2096571621}
     text:
     - Yeah once in the head wasn't enough so he shot himself again.
@@ -1300,7 +1300,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b5e1f3fb7342e3447a2e165fbfec3258, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1406,7 +1406,7 @@ Transform:
   m_LocalScale: {x: 0.60670614, y: 0.67832714, z: 0.29798}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &177318776
 MonoBehaviour:
@@ -1737,7 +1737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201345753}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.91, y: 0.493, z: 0}
+  m_LocalPosition: {x: 0.91, y: 0.493, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1607685229}
@@ -1840,7 +1840,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: c6dfb9213495ede418b787fa0786dfce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2772,7 +2772,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327065678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.595, y: -0.784, z: 0}
+  m_LocalPosition: {x: -5.595, y: -0.784, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2107795430}
@@ -2876,7 +2876,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: f1601c5acef05884994917b1e8516b65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3871,7 +3871,8 @@ MonoBehaviour:
   errUseMessages:
   - What do you want me to do with this?
   successUseMessages:
-  - I recognize the guy.. Saw him near the pharmacy a few weeks ago.
+  - I recognize the guy.. Sam I think?
+  - He lives by the pharmacy.
   - He gave me this empty envelope addressed to the FBI!
   doorName: 
   spriteAfterUse: {fileID: 0}
@@ -3885,7 +3886,7 @@ MonoBehaviour:
     - Evening Mike, can I ask you a few questions?
   - speaker: {fileID: 410838403}
     text:
-    - Larry eh?
+    - Jerry eh?
   - speaker: {fileID: 2096571621}
     text:
     - Yeah, I'm trying to gather some info.
@@ -4132,7 +4133,6 @@ Transform:
   - {fileID: 889257089}
   - {fileID: 685747613}
   - {fileID: 865003959}
-  - {fileID: 740381078}
   - {fileID: 79832505}
   - {fileID: 634826334}
   - {fileID: 48224161}
@@ -5504,7 +5504,7 @@ Transform:
   m_LocalScale: {x: 0.733796, y: 0.34814605, z: 0.29797998}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &612882662
 MonoBehaviour:
@@ -5594,7 +5594,7 @@ Transform:
   m_LocalScale: {x: 0.733796, y: 0.6788848, z: 0.29797998}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &618557739
 MonoBehaviour:
@@ -5693,7 +5693,7 @@ Transform:
   m_LocalScale: {x: 0.40208, y: 0.2282925, z: 0.29797998}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &631040932
 MonoBehaviour:
@@ -5783,7 +5783,7 @@ Transform:
   m_LocalScale: {x: 0.40208337, y: 0.6087789, z: 0.29798}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &634826335
 MonoBehaviour:
@@ -6083,7 +6083,8 @@ MonoBehaviour:
   conversation:
   - speaker: {fileID: 2096571621}
     text:
-    - This book contains a small key!
+    - Well what do you know...
+    - There's a small safe key in this book!
 --- !u!61 &644107414
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6838,96 +6839,6 @@ BoxCollider2D:
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!1 &740381077
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 740381078}
-  - component: {fileID: 740381080}
-  - component: {fileID: 740381079}
-  m_Layer: 0
-  m_Name: Chief Computer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &740381078
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740381077}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.313, y: -0.226, z: -0.001}
-  m_LocalScale: {x: 0.55283785, y: 0.48234817, z: 0.118104376}
-  m_Children: []
-  m_Father: {fileID: 452114349}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &740381079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740381077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c2d0cc9c8926340bcca051f4bdac24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canEnter: 0
-  canInspect: 1
-  canTake: 0
-  canTalk: 0
-  canUse: 0
-  requiresItemForUse: 0
-  destroyAfterUse: 0
-  switchToInspectAfterUse: 0
-  activedAfterUse: {fileID: 0}
-  validItemName: 
-  errUseMessages: []
-  successUseMessages: []
-  doorName: 
-  spriteAfterUse: {fileID: 0}
-  givenObjects: []
-  takenObjects: []
-  conversation:
-  - speaker: {fileID: 2096571621}
-    text:
-    - She got a better computer with 16 colors.
---- !u!61 &740381080
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740381077}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -8064,7 +7975,7 @@ Transform:
   m_LocalScale: {x: 2.2315629, y: 0.511945, z: 0.29798}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &896498642
 MonoBehaviour:
@@ -9503,7 +9414,7 @@ Transform:
   m_LocalScale: {x: 0.40208, y: 0.456585, z: 0.29797998}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1143752714
 MonoBehaviour:
@@ -10417,7 +10328,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7647266a718d3424fb8b704b32d692d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10580,7 +10491,7 @@ Transform:
   m_LocalScale: {x: 0.60538167, y: 0.6788848, z: 0.29797998}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1253772934
 MonoBehaviour:
@@ -11882,7 +11793,7 @@ Transform:
   m_LocalScale: {x: 0.40208337, y: 0.6087789, z: 0.29798}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1408037292
 MonoBehaviour:
@@ -15765,7 +15676,7 @@ Transform:
   m_LocalScale: {x: 0.5578907, y: 0.511945, z: 0.29798}
   m_Children: []
   m_Father: {fileID: 452114349}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2097601125
 MonoBehaviour:

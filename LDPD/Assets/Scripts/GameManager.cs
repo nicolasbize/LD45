@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
                 new Conversation.ChatEntry() {
                     speaker = hero,
                     text = new string[] {
-                        "Chief Toadler just called me in her office.",
+                        "Chief McFly just called me in her office.",
                         "Must be about the raise she keeps telling me about!"
                     }
                 }
