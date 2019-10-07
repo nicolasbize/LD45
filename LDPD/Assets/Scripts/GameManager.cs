@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Scene currentScene;
     public AudioClip introMusic;
     public AudioClip mainMusic;
+    public AudioClip shootFx;
     private CursorManager cursorManager;
     private GameObject hero;
     private Transition black;

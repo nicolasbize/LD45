@@ -37,12 +37,18 @@ public class Killer : MonoBehaviour
                 }
                 if (timer > 6.5 && timer < 6.7) {
                     GetComponent<SpriteRenderer>().sprite = shooting;
+                    if (GetComponent<AudioSource>().isPlaying == false) {
+                        GetComponent<AudioSource>().Play();
+                    }
                 }
                 if (timer > 6.7 && timer < 7.2) {
                     GetComponent<SpriteRenderer>().sprite = aboutToShoot;
                 }
                 if (timer > 7.2 && timer < 7.4) {
                     GetComponent<SpriteRenderer>().sprite = shooting;
+                    if (GetComponent<AudioSource>().isPlaying == false) {
+                        GetComponent<AudioSource>().Play();
+                    }
                 }
                 if (timer > 7.4) {
                     GetComponent<SpriteRenderer>().sprite = idle;
